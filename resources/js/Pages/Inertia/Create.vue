@@ -17,7 +17,6 @@ const submitFunction = () => {
     <form @submit.prevent="submitFunction">
         <input type="text" name="title" v-model="form.title"><br>
         <input type="text" name="content" v-model="form.content">
-        <input>
         <button>送信</button>  
     </form>
 
