@@ -7,7 +7,7 @@ defineProps({
 })
 
 const deleteConfirm = id => {
-    console.log(id)
+    // console.log(id)
   Inertia.delete(`/inertia/${id}`, {
     onBefore: () => confirm('本当に削除しますか？')
   })
