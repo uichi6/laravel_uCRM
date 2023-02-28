@@ -4,6 +4,10 @@ import { Head } from '@inertiajs/inertia-vue3';
 import { reactive } from 'vue'
 import { Inertia } from '@inertiajs/inertia'
 
+defineProps({
+    errors:Object
+})
+
 const form = reactive({
     name: null,
     memo: null,
