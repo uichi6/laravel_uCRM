@@ -13,8 +13,8 @@ const form = reactive({
     address: null, birthday: null, gender: null, memo: null
 })
 
-const storeItem = () => {
-    Inertia.post('/items', form)
+const storeCustomer = () => {
+    Inertia.post('/customers', form)
 }
 </script>
 
@@ -34,7 +34,7 @@ const storeItem = () => {
                     <div class="p-6 text-gray-900">
                         <ValidationErrors class="mb-4" />
                         <section class="text-gray-600 body-font relative">
-                            <form @submit.prevent="storeItem">
+                            <form @submit.prevent="storeCustomer">
                                 <div class="container px-5 py-8 mx-auto">
 
                                 <div class="lg:w-1/2 md:w-2/3 mx-auto">
@@ -67,7 +67,7 @@ const storeItem = () => {
                                         <div class="relative">
                                                 <label for="email" class="leading-7 text-sm text-gray-600">メールアドレス</label>
                                                 <input type="email" id="email" name="email" v-model="form.email" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-                                                <div v-if="errors.mail">{{ errors.email }}</div>
+                                                <div v-if="errors.email">{{ errors.email }}</div>
                                         </div>
                                     </div>
 
@@ -75,7 +75,7 @@ const storeItem = () => {
                                         <div class="relative">
                                                 <label for="postcode" class="leading-7 text-sm text-gray-600">郵便番号</label>
                                                 <input type="number" id="postcode" name="postcode" v-model="form.postcode" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-                                                <div v-if="errors.name">{{ errors.name }}</div>
+                                                <div v-if="errors.postcode">{{ errors.postcode }}</div>
                                         </div>
                                     </div>
 
@@ -104,7 +104,7 @@ const storeItem = () => {
                                             <label for="gender1" class="ml-2 mr-4">女性</label>
                                             <input type="radio" id="gender2" name="is_gender" v-model="form.is_gender" value="2">
                                             <label for="gender2" class="ml-2 mr-4">その他</label>
-                                            <div v-if="errors.is_selling">{{ errors.is_selling }}</div>
+                                            <div v-if="errors.is_gender">{{ errors.is_gender }}</div>
                                         </div>
                                     </div>
 

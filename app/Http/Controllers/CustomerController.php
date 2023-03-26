@@ -58,7 +58,7 @@ class CustomerController extends Controller
             'postcode' => $request->postcode,
             'address' => $request->address,
             'birthday' => $request->birthday,
-            'gender' => $request->gender,
+            'gender' => $request->is_gender,
             'memo' => $request->memo,
             ]);
             return to_route('customers.index')
