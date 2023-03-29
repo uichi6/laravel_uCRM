@@ -5,6 +5,10 @@ import { reactive } from 'vue'
 import { Inertia } from '@inertiajs/inertia'
 import { Core as YubinBangoCore } from "yubinbango-core2";
 
+defineProps({
+    errors:Object
+})
+
 const form = reactive({
     name: null, kana: null, tel: null, email: null, postcode: null,
     address: null, birthday: null, gender: null, memo: null
