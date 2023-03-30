@@ -16,7 +16,8 @@ const form = reactive({
 
 const fetchAddress = () => {
     new YubinBangoCore(String(form.postcode), (value) => {
-        console.log(value)
+        // console.log(value)
+        form.address = value.region + value.locality + value.street
     })
 }
 
