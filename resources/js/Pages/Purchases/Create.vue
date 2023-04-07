@@ -58,7 +58,7 @@ const quantity = [ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
 <template>
      <AuthenticatedLayout>
-        <from @submit.prevent="storePurchase">
+        <form @submit.prevent="storePurchase">
         日付<br>
         <input type="date" name="date" v-model="form.date"><br>
         会員名<br>
@@ -103,6 +103,6 @@ const quantity = [ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
         合計：{{ totalPrice }} 円
         <br>
         <button>登録する</button>
-        </from>
+        </form>
     </AuthenticatedLayout>
 </template>
