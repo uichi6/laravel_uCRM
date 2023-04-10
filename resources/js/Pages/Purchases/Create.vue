@@ -4,6 +4,7 @@ import { Head } from '@inertiajs/inertia-vue3';
 import { onMounted, reactive, ref, computed } from 'vue'
 import { Inertia } from '@inertiajs/inertia'
 import { getToday } from '@/common'
+import ValidationErrors from '@/Components/ValidationErrors.vue';
 
 const props = defineProps({ 
     'customers': Array,
