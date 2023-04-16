@@ -4,9 +4,10 @@ import { Head } from '@inertiajs/inertia-vue3';
 import { onMounted, reactive, ref, computed } from 'vue'
 import { Inertia } from '@inertiajs/inertia'
 import { getToday } from '@/common'
-import ValidationErrors from '@/Components/ValidationErrors.vue';
+import MicroModal from '@/Components/MicroModal.vue';
 
 const props = defineProps({ 
+    'errors' :Object, //追加
     'customers': Array,
     'items': Array
 })
@@ -89,6 +90,7 @@ const quantity = [ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
                                     <div class="p-2 w-full">
                                         <div class="relative">
+                                            <MicroModal />
                                             <label for="customer" class="leading-7 text-sm text-gray-600">日付</label>
                                             <select name="customer" v-model="form.customer_id" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                                 <option v-for="customer in customers" :value="customer.id" :key="customer.id">
@@ -99,24 +101,47 @@ const quantity = [ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
                                         </div>
                                     </div>
 
-                                    <div class="p-2 w-full">
-                                        <div class="relative">
-                                            <label for="memo" class="leading-7 text-sm text-gray-600">メモ</label>
-                                            <textarea id="memo" name="memo" v-model="form.memo" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
-                                            <div v-if="errors.memo">{{ errors.memo }}</div>
-                                        </div>
-                                    </div>
+                                <div class="w-full mt-8 mx-auto overflow-auto">
+                                <table class="table-auto w-full text-left whitespace-no-wrap">
+                                    <thead>
+                                    <tr>
+                                        <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">Id</th>
+                                        <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">商品名</th>
+                                        <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">金額</th>
+                                        <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">数量</th>
+                                        <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">小計</th>
+                                        <th class="w-10 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br"></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr v-for="item in itemList" :key="item.id">
+                                        <td class="border-b-2 border-gray-200 px-4 py-3">{{ item.id }}</td>
+                                        <td class="border-b-2 border-gray-200 px-4 py-3">{{ item.name }}</td>
+                                        <td class="border-b-2 border-gray-200 px-4 py-3">{{ item.price }}</td>
+                                        <td class="border-b-2 border-gray-200 px-4 py-3">
+                                        <select name="quantity" v-model="item.quantity">
+                                            <option v-for="q in quantity" :value="q">{{ q }}</option>
+                                        </select>
+                                        </td>
+                                        <td class="border-b-2 border-gray-200 px-4 py-3">{{ item.price * item.quantity }}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                </div>
+
 
                                     <div class="p-2 w-full">
                                         <div class="relative">
-                                            <label for="price" class="leading-7 text-sm text-gray-600">商品価格</label>
-                                            <input type="number" id="price" name="price" v-model="form.price" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                            <label for="price" class="leading-7 text-sm text-gray-600">合計金額</label><br>
+                                            <div class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                                {{ totalPrice }} 円
+                                            </div>
                                             <div v-if="errors.tel">{{ errors.tel }}</div>
                                         </div>
                                     </div>
 
                                     <div class="p-2 w-full">
-                                    <button class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">顧客登録</button>
+                                    <button class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">登録する</button>
                                     </div>
                                 </div>
                                 </div>
