@@ -16,11 +16,11 @@ use App\Models\Customer;
 */
 
 Route::middleware('auth:sanctum')
-->get('/user', function (Request $request) {
+->get('/searchCustomers', function (Request $request) {
     return Customer::searchCustomers($request->search)
     ->select('id', 'name', 'kana', 'tel')->paginate(50);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+     return $request->user();
 });
