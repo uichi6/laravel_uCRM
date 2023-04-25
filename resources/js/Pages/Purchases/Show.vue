@@ -42,8 +42,8 @@ onMounted(() => { // ページ読み込み後 即座に実行
                                     <div class="p-2 w-full">
                                         <div class="relative">
                                             <label for="date" class="leading-7 text-sm text-gray-600">日付</label>
+                                            {{ dayjs(props.order[0].created_at).format('YYYY/MM/DD') }}
                                             <div id="date" name="date" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"></div>
-                                            {{ dayjs(props.order[0].created_at).format('YYYY/MM/DD') }}</div>
                                             <div v-if="errors.name">{{ errors.name }}</div>
                                         </div>
                                     </div>
@@ -52,7 +52,7 @@ onMounted(() => { // ページ読み込み後 即座に実行
                                         <div class="relative">   
                                             <label for="customer" class="leading-7 text-sm text-gray-600">会員名</label>
                                             <div id="date" name="date" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"></div>
-                                            {{ props.order[0].customer_name }}</div>
+                                            {{ props.order[0].customer_name }}
                                             <div v-if="errors.name">{{ errors.name }}</div>
                                         </div>
                                     </div>
