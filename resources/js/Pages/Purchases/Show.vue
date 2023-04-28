@@ -1,6 +1,6 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head } from '@inertiajs/inertia-vue3';
+import { Head, Link } from '@inertiajs/inertia-vue3';
 import { onMounted, reactive, ref, computed } from 'vue'
 import { Inertia } from '@inertiajs/inertia'
 import dayjs from 'dayjs'
@@ -69,16 +69,12 @@ onMounted(() => { // ページ読み込み後 即座に実行
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr v-for="item in itemList" :key="item.id">
-                                        <td class="border-b-2 border-gray-200 px-4 py-3">{{ item.id }}</td>
-                                        <td class="border-b-2 border-gray-200 px-4 py-3">{{ item.name }}</td>
-                                        <td class="border-b-2 border-gray-200 px-4 py-3">{{ item.price }}</td>
-                                        <td class="border-b-2 border-gray-200 px-4 py-3">
-                                        <select name="quantity" v-model="item.quantity">
-                                            <option v-for="q in quantity" :value="q">{{ q }}</option>
-                                        </select>
-                                        </td>
-                                        <td class="border-b-2 border-gray-200 px-4 py-3">{{ item.price * item.quantity }}</td>
+                                    <tr v-for="item in props.items" :key="item.id">
+                                        <td class="border-b-2 border-gray-200 px-4 py-3">{{ item.item_id }}</td>
+                                        <td class="border-b-2 border-gray-200 px-4 py-3">{{ item.item_name }}</td>
+                                        <td class="border-b-2 border-gray-200 px-4 py-3">{{ item.item_price }}</td>
+                                        <td class="border-b-2 border-gray-200 px-4 py-3">{{ item.quantity }}</td>
+                                        <td class="border-b-2 border-gray-200 px-4 py-3">{{ item.subtotal }}</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -117,7 +113,7 @@ onMounted(() => { // ページ読み込み後 即座に実行
 
 
                                     <div class="p-2 w-full">
-                                    <button class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">登録する</button>
+                                     <Link as="button" :href="route('purchases.edit', { purchase: props.order[0].item.id })" class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">編集する</Link>
                                     </div>
                                 </div>
                                 </div>
