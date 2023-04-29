@@ -113,7 +113,7 @@ onMounted(() => { // ページ読み込み後 即座に実行
 
 
                                     <div class="p-2 w-full">
-                                     <Link as="button" :href="route('purchases.edit', { purchase: props.order[0].item.id })" class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">編集する</Link>
+                                     <Link as="button" :href="route('purchases.edit', { purchase: props.order[0].id })" class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">編集する</Link>
                                     </div>
                                 </div>
                                 </div>
