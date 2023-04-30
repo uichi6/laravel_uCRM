@@ -165,7 +165,7 @@ class PurchaseController extends Controller
         ->where('id', $purchase->id)
         ->selectRaw('id, customer_id,
          customer_name, status, created_at')
-        ->get();
+        ->paginate(50);
 
         return Inertia::render('Purchases/Edit' , [
            'items' => $items, 
