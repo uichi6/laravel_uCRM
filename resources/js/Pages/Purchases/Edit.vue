@@ -25,6 +25,7 @@ onMounted(() => { // ページ読み込み後 即座に実行
 const itemList = ref([])
 
 const form = reactive({
+    id: props.order[0].id,
     date: dayjs(props.order[0].created_at).format("YYYY-MM-DD"),
     customer_id: props.order[0].customer_id,
     status: props.order[0].status,
@@ -39,7 +40,7 @@ const totalPrice = computed(() => {
     return total
 })
 
-const storePurchase = () => {
+const updatePurchase = id => {
     itemList.value.forEach( item => {
         if( item.quantity > 0){
             form.items.push({
@@ -49,7 +50,7 @@ const storePurchase = () => {
             })
         }
     })
-    Inertia.post(route('purchases.store'), form )
+    Inertia.put(route('purchases.update', { purchase: id }), form )
 }
 
 const quantity = [ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
@@ -72,7 +73,7 @@ const quantity = [ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
                     <div class="p-6 text-gray-900">
                         <ValidationErrors class="mb-4" />
                         <section class="text-gray-600 body-font relative">
-                            <form @submit.prevent="storePurchase">
+                            <form @submit.prevent="updatePurchase(form.id)">
                                 <div class="container px-5 py-8 mx-auto">
 
                                 <div class="lg:w-1/2 md:w-2/3 mx-auto">
@@ -141,7 +142,7 @@ const quantity = [ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
                                     </div>
 
                                     <div class="p-2 w-full">
-                                    <button class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">登録する</button>
+                                    <button class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">更新する</button>
                                     </div>
                                 </div>
                                 </div>
