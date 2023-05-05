@@ -28,8 +28,10 @@ const getData = async () => {
         },
       })
       .then((res) => {
-        data.data = res.data.data;
-        console.log(res.data);
+        data.data = res.data.data
+        data.labels = res.data.labels
+        data.totals = res.data.totals
+        console.log(res.data)
       });
   } catch (e) {
     console.log(e.message);
@@ -61,7 +63,7 @@ const getData = async () => {
               </button>
             </form>
 
-            <Chart />
+            <Chart :data="data" />
 
             <div v-show="data.data" class="lg:w-2/3 w-full mx-auto overflow-auto">
             <table class="table-auto w-full text-left whitespace-no-wrap">
