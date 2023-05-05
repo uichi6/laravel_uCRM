@@ -30,7 +30,7 @@ class AnalysisController extends Controller
         }
         return response()->json([
             'data' => $data,
-            'type' => $request->type
+            'type' => $request->type,
             'labels' => $labels,
             'totals' => $totals,
         ], Response::HTTP_OK);

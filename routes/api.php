@@ -18,7 +18,7 @@ use App\Http\Controllers\Api\AnalysisController;
 
 Route::middleware('auth:sanctum')
 ->get('/analysis', [ AnalysisController::class, 'index' ])
-->name('api.analysis');
+->name('api.analysis'); 
 
 Route::middleware('auth:sanctum')
 ->get('/searchCustomers', function (Request $request) {
@@ -27,5 +27,5 @@ Route::middleware('auth:sanctum')
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-     return $request->user();
+    return $request->user();
 });
