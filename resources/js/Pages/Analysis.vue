@@ -63,7 +63,9 @@ const getData = async () => {
               </button>
             </form>
 
+            <div v-show="data.data">
             <Chart :data="data" />
+            </div>
 
             <div v-show="data.data" class="lg:w-2/3 w-full mx-auto overflow-auto">
             <table class="table-auto w-full text-left whitespace-no-wrap">
