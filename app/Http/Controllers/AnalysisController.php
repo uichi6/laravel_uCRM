@@ -122,7 +122,7 @@ class AnalysisController extends Controller
         ')
         ->get();
 
-        dd($data);
+        // dd($data);
 
         return Inertia::render('Analysis');
     }
