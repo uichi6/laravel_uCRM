@@ -54,7 +54,7 @@ class AnalysisController extends Controller
         // dd($subQuery);
 
         // 4. 会員毎のRFMランクを計算
-        $subQuery = DB::table($subQuery);
+        $subQuery = DB::table($subQuery)
         ->selectRaw('customer_id, customer_name,
         recentDate, recency, frequency, monetary,
         case
