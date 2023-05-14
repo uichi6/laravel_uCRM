@@ -24,23 +24,24 @@ const data = reactive({});
 
 const getData = async () => {
   try {
-    await axios
-      .get("/api/analysis/", {
+    await axios.get("/api/analysis/", {
         params: {
           startDate: form.startDate,
           endDate: form.endDate,
           type: form.type,
+          rfmPrms: form.rfmPrms
         },
       })
       .then((res) => {
         data.data = res.data.data
-        data.labels = res.data.labels
+        if(res.data.labels){data.labels = res.data.labels}
+        if(res.data.eachCount){data.eachCount = res.data.eachCount}
         data.totals = res.data.totals
         data.type = res.data.type
         console.log(res.data)
       });
   } catch (e) {
-    console.log(e.message);
+    console.log(e.message)
   }
 };
 </script>
@@ -117,7 +118,9 @@ const getData = async () => {
             </form>
 
             <div v-show="data.data">
-            <Chart :data="data" />
+              <div v-if="data.type != 'rfm' ">
+                <Chart :data="data" />
+              </div>
             <ResultTable :data="data" />
             </div>
 
